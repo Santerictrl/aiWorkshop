@@ -125,6 +125,111 @@ def search_history(history: list) -> None:
     print_history_entries(matches)
 
 
+def extract_ip_from_result(result: str) -> str:
+    """
+    Extract IP address from a domain resolution result string.
+
+    Args:
+        result (str): The result string from resolve_domain function.
+
+    Returns:
+        str: The IP address if found, otherwise empty string.
+    """
+    if "resolves to:" in result:
+        # Extract IP from "Domain 'domain' resolves to: IP"
+        parts = result.split("resolves to:")
+        if len(parts) == 2:
+            return parts[1].strip()
+    return ""
+
+
+def show_ip_change_history(history: list) -> None:
+    """
+    Show IP address change history for a specific domain.
+    """
+    domain = input("Enter domain name to check IP change history: ").strip().lower()
+    if not domain:
+        print("Domain name cannot be empty.")
+        return
+
+    # Filter history for this domain (case-insensitive)
+    domain_entries = [entry for entry in history if entry['domain'].lower() == domain]
+
+    if not domain_entries:
+        print(f"No history found for domain '{domain}'.")
+        return
+
+    # Extract IP addresses with timestamps
+    ip_history = []
+    for entry in sorted(domain_entries, key=lambda x: x['timestamp'], reverse=True):
+        ip = extract_ip_from_result(entry['result'])
+        if ip:  # Only include successful resolutions
+            ip_history.append({
+                'timestamp': entry['timestamp'],
+                'ip': ip,
+                'user': entry['user']
+            })
+
+    if not ip_history:
+        print(f"No successful IP resolutions found for '{domain}'.")
+        return
+
+    # Group by IP address to find changes
+    ip_groups = {}
+    for entry in ip_history:
+        ip = entry['ip']
+        if ip not in ip_groups:
+            ip_groups[ip] = []
+        ip_groups[ip].append(entry)
+
+    # Display results
+    print(f"\nIP Change History for '{domain}':")
+    print("=" * 60)
+
+    # Show current IP first
+    current_ip = ip_history[0]['ip']
+    current_timestamp = ip_history[0]['timestamp']
+    print(f"Current IP: {current_ip} (as of {current_timestamp})")
+    print()
+
+    # Show all unique IPs with their first and last seen dates
+    unique_ips = list(ip_groups.keys())
+    if len(unique_ips) == 1:
+        print("No IP changes detected - domain has always resolved to the same IP.")
+        print(f"First seen: {ip_groups[unique_ips[0]][-1]['timestamp']}")
+        print(f"Last checked: {ip_groups[unique_ips[0]][0]['timestamp']}")
+        print(f"Total checks: {len(ip_groups[unique_ips[0]])}")
+    else:
+        print("IP Address Changes:")
+        for i, ip in enumerate(unique_ips):
+            entries = ip_groups[ip]
+            first_seen = entries[-1]['timestamp']  # Oldest first (reverse sorted)
+            last_seen = entries[0]['timestamp']   # Newest first
+            check_count = len(entries)
+
+            status = "(current)" if ip == current_ip else "(previous)"
+            print(f"{i+1}. {ip} {status}")
+            print(f"   First seen: {first_seen}")
+            print(f"   Last seen:  {last_seen}")
+            print(f"   Check count: {check_count}")
+            print()
+
+        # Show timeline of changes
+        print("Timeline of Changes:")
+        print("-" * 30)
+        prev_ip = None
+        for entry in reversed(ip_history):  # Show chronological order (oldest first)
+            if prev_ip and prev_ip != entry['ip']:
+                print(f"  ↳ Changed to {entry['ip']} on {entry['timestamp']}")
+            elif prev_ip is None:
+                print(f"  ↳ First recorded: {entry['ip']} on {entry['timestamp']}")
+            prev_ip = entry['ip']
+
+    print("=" * 60)
+    print(f"Total successful checks: {len(ip_history)}")
+    print(f"Unique IP addresses: {len(unique_ips)}")
+
+
 def main():
     """Main function to run the domain checker with history and file logging."""
     print("Domain Resolver CLI")
@@ -144,6 +249,13 @@ def main():
             search_prompt = input("Search history for a domain? (y/n): ").strip().lower()
             if search_prompt == 'y':
                 search_history(persistent_history)
+
+        # New feature: IP change history
+        if persistent_history:
+            ip_history_prompt = input("Check IP change history for a domain? (y/n): ").strip().lower()
+            if ip_history_prompt == 'y':
+                show_ip_change_history(persistent_history)
+                print()
 
     session_history = []
 

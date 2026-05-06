@@ -46,5 +46,23 @@
     "user": "vscode",
     "domain": "instagram.com",
     "result": "Domain 'instagram.com' resolves to: 163.70.151.174"
+  },
+  {
+    "timestamp": "2026-04-29 12:43:34",
+    "user": "vscode",
+    "domain": "google.com",
+    "result": "Domain 'google.com' resolves to: 192.178.223.138"
+  },
+  {
+    "timestamp": "2026-04-22 12:43:34",
+    "user": "vscode",
+    "domain": "google.com",
+    "result": "Domain 'google.com' resolves to: 192.178.223.137"
+  },
+  {
+    "timestamp": "2026-05-03 12:43:34",
+    "user": "vscode",
+    "domain": "google.com",
+    "result": "Domain 'google.com' resolves to: 192.178.223.138"
   }
 ]
