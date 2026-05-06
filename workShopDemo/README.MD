@@ -22,6 +22,7 @@ The application will:
 - Perform a DNS lookup
 - Show whether the domain can be resolved
 - Optionally display the resolved IP address
+- Log history to a single persistent JSON file instead of creating a new text file each run
 
 You may use GitHub Copilot or another AI coding assistant, but you must understand and edit the generated code.
 

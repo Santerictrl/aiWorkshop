@@ -1,0 +1,50 @@
+[
+  {
+    "timestamp": "2026-05-06 12:43:34",
+    "user": "vscode",
+    "domain": "Google.com",
+    "result": "Domain 'Google.com' resolves to: 192.178.223.139"
+  },
+  {
+    "timestamp": "2026-05-06 12:43:41",
+    "user": "vscode",
+    "domain": "Facebook.com",
+    "result": "Domain 'Facebook.com' resolves to: 57.144.238.1"
+  },
+  {
+    "timestamp": "2026-05-06 12:44:18",
+    "user": "vscode",
+    "domain": "Elisa.fi",
+    "result": "Domain 'Elisa.fi' resolves to: 195.197.95.175"
+  },
+  {
+    "timestamp": "2026-05-06 12:44:25",
+    "user": "vscode",
+    "domain": "DNA.fi",
+    "result": "Domain 'DNA.fi' resolves to: 193.143.89.244"
+  },
+  {
+    "timestamp": "2026-05-06 12:44:30",
+    "user": "vscode",
+    "domain": "IS.fi",
+    "result": "Domain 'IS.fi' resolves to: 52.85.47.105"
+  },
+  {
+    "timestamp": "2026-05-06 12:44:47",
+    "user": "vscode",
+    "domain": "nyt.com",
+    "result": "Domain 'nyt.com' resolves to: 151.101.65.164"
+  },
+  {
+    "timestamp": "2026-05-06 12:45:27",
+    "user": "vscode",
+    "domain": "github.com",
+    "result": "Domain 'github.com' resolves to: 20.26.156.215"
+  },
+  {
+    "timestamp": "2026-05-06 12:48:09",
+    "user": "vscode",
+    "domain": "instagram.com",
+    "result": "Domain 'instagram.com' resolves to: 163.70.151.174"
+  }
+]
