@@ -1,0 +1,26 @@
+[
+  {
+    "timestamp": "2026-05-06 14:12:55",
+    "user": "vscode",
+    "domain": "youtube.com",
+    "result": "Domain 'youtube.com' resolves to: 172.217.194.190"
+  },
+  {
+    "timestamp": "2026-05-06 14:13:01",
+    "user": "vscode",
+    "domain": "google.com",
+    "result": "Domain 'google.com' resolves to: 142.251.10.102"
+  },
+  {
+    "timestamp": "2026-05-06 14:16:56",
+    "user": "vscode",
+    "domain": "youtube.com",
+    "result": "Domain 'youtube.com' resolves to: 172.217.194.93"
+  },
+  {
+    "timestamp": "2026-05-06 14:18:29",
+    "user": "vscode",
+    "domain": "google.com",
+    "result": "Domain 'google.com' resolves to: 142.250.4.139"
+  }
+]

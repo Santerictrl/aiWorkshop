@@ -239,7 +239,9 @@ def main():
     persistent_history = load_history()
 
     if persistent_history:
-        print_last_check(persistent_history)
+        show_last = input("Show last domain check? (y/n): ").strip().lower()
+        if show_last == 'y':
+            print_last_check(persistent_history)
 
         show_recent = input("Show the last 10 domain checks? (y/n): ").strip().lower()
         if show_recent == 'y':
