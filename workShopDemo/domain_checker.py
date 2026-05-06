@@ -260,7 +260,7 @@ def main():
     session_history = []
 
     while True:
-        domain_input = input("Enter a domain name to check (q to quit): ").strip()
+        domain_input = input("Enter a domain name to check (or q to quit): ").strip()
 
         if domain_input.lower() == 'q':
             if session_history:
